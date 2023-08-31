@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -27,37 +28,20 @@ public class Main {
             retorno = input.next();
 
             switch (retorno) {
-                case "1":
-                    cadastrarLivro();
-                    break;
-                case "2":
-                    cadastrarRevista();
-                    break;
-                case "3":
-                    System.out.println("Opção ainda não implementada");
-                    break;
-                case "4":
-                    listarTodosOsLivros(livros);
-                    break;
-                case "5":
-                    listarTodasAsRevistas(revistas);
-                    break;
-                case "6":
-                    mostrarMemoria();
-                    break;
-                case "7":
-                    excluirUltimoElemento();
-                    break;
-                case "8":
-                    System.out.println("Opção ainda não implementada");
-                    break;
-                case "0":
-                    System.out.println("Obrigado por utilizar o programa Biblioteca!");
-                    break;
+                case "1" -> cadastrarLivro();
+                case "2" -> cadastrarRevista();
+                case "3" -> procurarLivro();
+                case "4" -> listarTodosOsLivros(livros);
+                case "5" -> listarTodasAsRevistas(revistas);
+                case "6" -> mostrarMemoria();
+                case "7" -> excluirUltimoElemento();
+                case "8" -> System.out.println("Opção ainda não implementada");
+                case "0" -> System.out.println("Obrigado por utilizar o programa Biblioteca!");
             }
 
         } while (!retorno.equals("0"));
     }
+    // opção 1 do menu
     public static void cadastrarLivro() {
         livros[i] = new Livro();
         input.nextLine(); // Consume the leftover newline from previous input
@@ -81,6 +65,7 @@ public class Main {
         livros[i].setAnoPubli(Integer.parseInt(input.nextLine()));
         i++;
     }
+    // opção 2 do menu
     public static void cadastrarRevista() {
         revistas[j] = new Revista();
         input.nextLine(); // Consume the leftover newline from previous input
@@ -104,6 +89,40 @@ public class Main {
         revistas[j].setAnoPubli(Integer.parseInt(input.nextLine()));
         j++;
     }
+    public static void procurarLivro() {
+        String termoBusca="";
+        String nomeLivro="";
+        String nomeRevista="";
+        Livro[] livrosAchados = new Livro[1000];
+        Revista[] revistasAchadas = new Revista[1000];
+        int contadorLivro=0;
+        int contadorRevista=0;
+
+        System.out.println("Digite o termo procurado: ");
+        termoBusca = input.next();
+        termoBusca.toLowerCase();
+
+        for (int index = 0; index < i; index++) {
+            nomeLivro = livros[index].getNomeLivro();
+            nomeLivro.toLowerCase();
+            //nomeRevista = revistas[index].getNomeLivro();
+            //nomeRevista.toLowerCase();
+            if (nomeLivro.indexOf(termoBusca) >= 0) {
+                livrosAchados[contadorLivro] = livros[index];
+                contadorLivro++;
+            }
+//            if (nomeRevista.indexOf(termoBusca) >= 0) {
+//                revistasAchadas[contadorRevista] = revistas[index];
+//                contadorRevista++;
+//            }
+        }
+        System.out.println("Resultados: ");
+        System.out.println("Livros: ");
+        for (int mostraIndex = 0; mostraIndex < livrosAchados.length; mostraIndex++) {
+            System.out.println(livrosAchados[mostraIndex].toString());
+        }
+    }
+    // opção 4 do menu
     public static void listarTodosOsLivros(Livro livros[]) {
         for (int index = 0; index < i; index++) {
             System.out.println("Livro" + index);

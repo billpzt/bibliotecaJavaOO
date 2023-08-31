@@ -5,6 +5,11 @@ public class Livro {
     public Livro() {
     }
 
+//    @Override
+//    public String toString() {
+//        return nomeLivro + autor;
+//    }
+
     public Livro(String nomeLivro, String autor, String editora, String isbn, String prateleira, String secao, String cdd, int edicao, int anoPubli) {
         this.nomeLivro = nomeLivro;
         this.autor = autor;
