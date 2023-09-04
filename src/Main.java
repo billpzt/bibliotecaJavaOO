@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -43,8 +42,7 @@ public class Main {
         System.out.println("Escolha a opção: ");
         System.out.println("Para livros, digite \"L\"");
         System.out.println("Para revistas, digite \"R\"");
-        String opcao = input.next().toLowerCase();
-        return opcao;
+        return input.next().toLowerCase();
     }
     // opção 1 do menu
     public static void cadastroGeral(String opcao) {
@@ -111,8 +109,8 @@ public class Main {
         }
     }
     public static void procurarLivro() {
-        String termoBusca="";
-        String nomeLivro="";
+        String termoBusca;
+        String nomeLivro;
         ArrayList<Livro> livrosAchados = new ArrayList<>();
 
         System.out.println("Digite o termo procurado: ");
@@ -122,7 +120,7 @@ public class Main {
         for (int index = 0; index < i; index++) {
             nomeLivro = livros[index].getNomeLivro();
             System.out.println(index);
-            if (nomeLivro.toLowerCase().indexOf(termoBusca) >= 0) {
+            if (nomeLivro.toLowerCase().contains(termoBusca)) {
                 livrosAchados.add(livros[index]);
                 System.out.println(livros[index].getNomeLivro());
             }
@@ -133,8 +131,8 @@ public class Main {
         }
     }
     public static void procurarRevista() {
-        String termoBusca="";
-        String nomeRevista="";
+        String termoBusca;
+        String nomeRevista;
         ArrayList<Revista> revistasAchadas = new ArrayList<>();
 
         System.out.println("Digite o termo procurado: ");
@@ -144,7 +142,7 @@ public class Main {
         for (int index = 0; index < i; index++) {
             nomeRevista = livros[index].getNomeLivro();
             System.out.println(index);
-            if (nomeRevista.toLowerCase().indexOf(termoBusca) >= 0) {
+            if (nomeRevista.toLowerCase().contains(termoBusca)) {
                 revistasAchadas.add(revistas[index]);
                 System.out.println(revistas[index].getNomeLivro());
             }
@@ -163,7 +161,7 @@ public class Main {
         }
     }
     // opção 4 do menu
-    public static void listarTodosOsLivros(Livro livros[]) {
+    public static void listarTodosOsLivros(Livro[] livros) {
         for (int index = 0; index < i; index++) {
             System.out.println("Livro" + index);
             System.out.println(
@@ -178,7 +176,7 @@ public class Main {
             );
         }
     }
-    public static void listarTodasAsRevistas(Revista revistas[]) {
+    public static void listarTodasAsRevistas(Revista[] revistas) {
         for (int index = 0; index < j; index++) {
             System.out.println("Livro" + index);
             System.out.println(
@@ -198,7 +196,7 @@ public class Main {
         System.out.println("Livros:");
         System.out.println("Memória usada: " + i);
         System.out.println("Memória livre: " + (1000 - i));
-        System.out.println("");
+        System.out.println();
         System.out.println("Revistas:");
         System.out.println("Memória usada: " + j);
         System.out.println("Memória livre: " + (1000 - j));
