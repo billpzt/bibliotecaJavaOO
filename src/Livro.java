@@ -93,4 +93,19 @@ public class Livro {
     public void setAnoPubli(int anoPubli) {
         this.anoPubli = anoPubli;
     }
+
+    @Override
+    public String toString() {
+        return "Livro{" +
+                "nomeLivro='" + nomeLivro + '\'' +
+                ", autor='" + autor + '\'' +
+                ", editora='" + editora + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", prateleira='" + prateleira + '\'' +
+                ", secao='" + secao + '\'' +
+                ", cdd='" + cdd + '\'' +
+                ", edicao=" + edicao +
+                ", anoPubli=" + anoPubli +
+                '}';
+    }
 }
