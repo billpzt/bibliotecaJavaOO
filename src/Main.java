@@ -4,39 +4,44 @@ import java.util.Scanner;
 public class Main {
     static int i = 0;
     static int j = 0;
+    static String retorno;
     static Livro[] livros = new Livro[1000];
     static Revista[] revistas = new Revista[1000];
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
 
-        String retorno;
-
         do {
-            System.out.println("*********************************");
-            System.out.println("**Sistema de Cadastro de Livros**");
-            System.out.println("*********************************");
-            System.out.println("1 - Cadastrar");
-            System.out.println("2 - Procurar");
-            System.out.println("3 - Listar todos os livros / revistas");
-            System.out.println("4 - Quantidade cadastrada / livre");
-            System.out.println("5 - Excluir último elemento da lista");
-            System.out.println("6 - Ordenar Livros Cadastrados");
-            System.out.println("0 - Encerrar programa");
-
+            menu();
 
             retorno = input.next();
 
-            switch (retorno) {
-                case "1" -> cadastroGeral(escolherOpcao());
-                case "2" -> procurarGeral(escolherOpcao());
-                case "3" -> listarGeral(escolherOpcao());
-                case "4" -> mostrarMemoria();
-                case "5" -> excluirGeral(escolherOpcao());
-                case "6" -> ordenarLivros();
-                case "0" -> System.out.println("Obrigado por utilizar o programa Biblioteca!");
-            }
+            escolhaMenu(retorno);
 
         } while (!retorno.equals("0"));
+    }
+
+    public static void menu() {
+        System.out.println("*********************************");
+        System.out.println("**Sistema de Cadastro de Livros**");
+        System.out.println("*********************************");
+        System.out.println("1 - Cadastrar");
+        System.out.println("2 - Procurar");
+        System.out.println("3 - Listar todos os livros / revistas");
+        System.out.println("4 - Quantidade cadastrada / livre");
+        System.out.println("5 - Excluir último elemento da lista");
+        System.out.println("6 - Ordenar Livros Cadastrados");
+        System.out.println("0 - Encerrar programa");
+    }
+    public static void escolhaMenu(String retorno) {
+        switch (retorno) {
+            case "1" -> cadastroGeral(escolherOpcao());
+            case "2" -> procurarGeral(escolherOpcao());
+            case "3" -> listarGeral(escolherOpcao());
+            case "4" -> mostrarMemoria();
+            case "5" -> excluirGeral(escolherOpcao());
+            case "6" -> ordenarLivros();
+            case "0" -> System.out.println("Obrigado por utilizar o programa Biblioteca!");
+        }
     }
     public static String escolherOpcao() {
         System.out.println("Escolha a opção: ");
