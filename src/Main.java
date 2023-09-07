@@ -9,17 +9,12 @@ public class Main {
     static Revista[] revistas = new Revista[1000];
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
-
         do {
             menu();
-
             retorno = input.next();
-
             escolhaMenu(retorno);
-
         } while (!retorno.equals("0"));
     }
-
     public static void menu() {
         System.out.println("*********************************");
         System.out.println("**Sistema de Cadastro de Livros**");
@@ -105,7 +100,6 @@ public class Main {
         revistas[j].setAnoPubli(Integer.parseInt(input.nextLine()));
         j++;
     }
-
     public static void procurarGeral(String opcao) {
         switch (opcao) {
             case "l" -> procurarLivro();
@@ -157,7 +151,6 @@ public class Main {
             System.out.println(livro.toString());
         }
     }
-
     public static void listarGeral(String opcao) {
         switch (opcao) {
             case "l" -> listarTodosOsLivros(livros);
