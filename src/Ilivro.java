@@ -1,3 +1,3 @@
-public interface Ilivro {
-
-}
+//public static interface Ilivro {
+//    public void cadastrar();
+//}

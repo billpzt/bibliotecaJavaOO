@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ public class Main {
     static Livro[] livros = new Livro[1000];
     static Revista[] revistas = new Revista[1000];
     static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
         do {
             menu();
@@ -100,6 +102,7 @@ public class Main {
         revistas[j].setAnoPubli(Integer.parseInt(input.nextLine()));
         j++;
     }
+    // Função 2 do menu
     public static void procurarGeral(String opcao) {
         switch (opcao) {
             case "l" -> procurarLivro();
@@ -107,6 +110,7 @@ public class Main {
             default -> System.out.println("Opção inválida");
         }
     }
+    // Função 2 do menu
     public static void procurarLivro() {
         String termoBusca;
         String nomeLivro;
@@ -129,6 +133,7 @@ public class Main {
             System.out.println(livro.toString());
         }
     }
+    // Função 2 do menu
     public static void procurarRevista() {
         String termoBusca;
         String nomeRevista;
@@ -164,13 +169,13 @@ public class Main {
             System.out.println("Livro" + index);
             System.out.println(
                     livros[index].getNomeLivro() + ", " +
-                    livros[index].getAutor() + ", " +
-                    livros[index].getIsbn() + ", " +
-                    livros[index].getCdd() + ", " +
-                    livros[index].getEditora() + ", " +
-                    livros[index].getEdicao() + ", " +
-                    livros[index].getPrateleira() + ", " +
-                    livros[index].getAnoPubli()
+                            livros[index].getAutor() + ", " +
+                            livros[index].getIsbn() + ", " +
+                            livros[index].getCdd() + ", " +
+                            livros[index].getEditora() + ", " +
+                            livros[index].getEdicao() + ", " +
+                            livros[index].getPrateleira() + ", " +
+                            livros[index].getAnoPubli()
             );
         }
     }
@@ -179,13 +184,13 @@ public class Main {
             System.out.println("Livro" + index);
             System.out.println(
                     revistas[index].getNomeLivro() + ", " +
-                    revistas[index].getAutor() + ", " +
-                    revistas[index].getIssn() + ", " +
-                    revistas[index].getCdd() + ", " +
-                    revistas[index].getEditora() + ", " +
-                    revistas[index].getEdicao() + ", " +
-                    revistas[index].getPrateleira() + ", " +
-                    revistas[index].getAnoPubli()
+                            revistas[index].getAutor() + ", " +
+                            revistas[index].getIssn() + ", " +
+                            revistas[index].getCdd() + ", " +
+                            revistas[index].getEditora() + ", " +
+                            revistas[index].getEdicao() + ", " +
+                            revistas[index].getPrateleira() + ", " +
+                            revistas[index].getAnoPubli()
             );
         }
     }
@@ -208,12 +213,12 @@ public class Main {
         }
     }
     public static void excluirUltimoLivro() {
-        if(i>0) {
+        if (i > 0) {
             i--;
         }
     }
     public static void excluirUltimaRevista() {
-        if(i>0) {
+        if (i > 0) {
             j--;
         }
     }
@@ -225,15 +230,15 @@ public class Main {
         }
     }
     public static void ordenarLivros() {
-        for (int k=0;k<(i-1);k++) {
-            for (int z=0;z<(i-1);z++) {
-                Livro aux=new Livro();
-                Livro aux1= new Livro();
-                aux=livros[z];
-                aux1=livros[z+1];
-                if(aux.getNomeLivro().compareToIgnoreCase(aux1.getNomeLivro()) > 0) {
+        for (int k = 0; k < (i - 1); k++) {
+            for (int z = 0; z < (i - 1); z++) {
+                Livro aux = new Livro();
+                Livro aux1 = new Livro();
+                aux = livros[z];
+                aux1 = livros[z + 1];
+                if (aux.getNomeLivro().compareToIgnoreCase(aux1.getNomeLivro()) > 0) {
                     livros[z] = aux1;
-                    livros[z+1] = aux;
+                    livros[z + 1] = aux;
                 }
             }
         }
@@ -251,16 +256,58 @@ public class Main {
 //        }
     }
     public static void ordenarRevistas() {
-        for (int r=0;r<(i-1);r++) {
-            for (int z=0;z<(i-1);z++) {
-                Revista aux=new Revista();
-                Revista aux1= new Revista();
-                aux=revistas[z];
-                aux1=revistas[z+1];
-                if(aux.getNomeLivro().compareToIgnoreCase(aux1.getNomeLivro()) > 0) {
+        for (int r = 0; r < (i - 1); r++) {
+            for (int z = 0; z < (i - 1); z++) {
+                Revista aux = new Revista();
+                Revista aux1 = new Revista();
+                aux = revistas[z];
+                aux1 = revistas[z + 1];
+                if (aux.getNomeLivro().compareToIgnoreCase(aux1.getNomeLivro()) > 0) {
                     livros[z] = aux1;
-                    livros[z+1] = aux;
+                    livros[z + 1] = aux;
                 }
             }
         }
+    }
+    public static void excluirGeral(String opcao) {
+        switch (opcao) {
+            case "l" -> excluirLivro();
+            case "r" -> ordenarRevistas();
+            default -> System.out.println("Opção inválida");
+        }
+    }
+    public static void excluirLivro() {
+        listarTodosOsLivros(livros);
+        int posicao=0,k=0;
+        System.out.print("Digite a posição do elemento a ser excluido: ");
+        try {
+            posicao = input.nextInt();
+        } catch (Exception e) {
+            System.out.println("Entrada incorreta");
+        }
+        if((posicao <= i && posicao >= 0)) {
+            i--;
+            for (k = posicao; k<=i; k++) {
+                livros[k] = livros[k+1];
+            }
+            livros[k+1]=null;
+        }
+    }
+    public static void excluirRevistas() {
+        listarTodasAsRevistas(revistas);
+        int posicao=0,k=0;
+        System.out.print("Digite a posição do elemento a ser excluido: ");
+        try {
+            posicao = input.nextInt();
+        } catch (Exception e) {
+            System.out.println("Entrada incorreta");
+        }
+        if((posicao <= i && posicao >= 0)) {
+            i--;
+            for (k = posicao; k<=i; k++) {
+                revistas[k] = revistas[k+1];
+            }
+            revistas[k+1]=null;
+        }
+    }
 }
