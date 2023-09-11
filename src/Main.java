@@ -34,7 +34,7 @@ public class Main {
             case "3" -> listarGeral(escolherOpcao());
             case "4" -> mostrarMemoria();
             case "5" -> excluirGeral(escolherOpcao());
-            case "6" -> ordenarLivros();
+            case "6" -> ordenarGeral(escolherOpcao());
             case "0" -> System.out.println("Obrigado por utilizar o programa Biblioteca!");
         }
     }
@@ -217,18 +217,50 @@ public class Main {
             j--;
         }
     }
-    public static void ordenarLivros() {
-        // (myStr1.toLowerCase().compareTo(myStra2.toLowerCase())<0;
-        String autor1, autor2;
-        Livro livroTemp;
-        for (int ord=0; ord<i; ord++) {
-            autor1 = livros[ord].getAutor();
-            autor2 = livros[ord+1].getAutor();
-            if((autor1.toLowerCase().compareTo(autor2.toLowerCase())) < 0) {
-                livroTemp = livros[ord];
-                livros[ord] = livros[ord+1];
-                livros[ord+1] = livroTemp;
-            }
+    public static void ordenarGeral(String opcao) {
+        switch (opcao) {
+            case "l" -> ordenarLivros();
+            case "r" -> ordenarRevistas();
+            default -> System.out.println("Opção inválida");
         }
     }
+    public static void ordenarLivros() {
+        for (int k=0;k<(i-1);k++) {
+            for (int z=0;z<(i-1);z++) {
+                Livro aux=new Livro();
+                Livro aux1= new Livro();
+                aux=livros[z];
+                aux1=livros[z+1];
+                if(aux.getNomeLivro().compareToIgnoreCase(aux1.getNomeLivro()) > 0) {
+                    livros[z] = aux1;
+                    livros[z+1] = aux;
+                }
+            }
+        }
+        // (myStr1.toLowerCase().compareTo(myStra2.toLowerCase())<0;
+//        String titulo1, titulo2;
+//        Livro livroTemp;
+//        for (int ord=0; ord<(i-1); ord++) {
+//            titulo1 = livros[ord].getNomeLivro();
+//            titulo2 = livros[ord+1].getNomeLivro();
+//            if((titulo1.toLowerCase().compareTo(titulo2.toLowerCase())) < 0) {
+//                livroTemp = livros[ord];
+//                livros[ord] = livros[ord+1];
+//                livros[ord+1] = livroTemp;
+//            }
+//        }
+    }
+    public static void ordenarRevistas() {
+        for (int r=0;r<(i-1);r++) {
+            for (int z=0;z<(i-1);z++) {
+                Revista aux=new Revista();
+                Revista aux1= new Revista();
+                aux=revistas[z];
+                aux1=revistas[z+1];
+                if(aux.getNomeLivro().compareToIgnoreCase(aux1.getNomeLivro()) > 0) {
+                    livros[z] = aux1;
+                    livros[z+1] = aux;
+                }
+            }
+        }
 }
