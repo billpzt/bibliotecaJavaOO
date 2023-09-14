@@ -207,21 +207,21 @@ public class Main {
     }
     public static void excluirGeral(String opcao) {
         switch (opcao) {
-            case "l" -> excluirUltimoLivro();
-            case "r" -> excluirUltimaRevista();
+            case "l" -> excluirLivro();
+            case "r" -> excluirRevista();
             default -> System.out.println("Opção inválida");
         }
     }
-    public static void excluirUltimoLivro() {
-        if (i > 0) {
-            i--;
-        }
-    }
-    public static void excluirUltimaRevista() {
-        if (i > 0) {
-            j--;
-        }
-    }
+//    public static void excluirUltimoLivro() {
+//        if (i > 0) {
+//            i--;
+//        }
+//    }
+//    public static void excluirUltimaRevista() {
+//        if (i > 0) {
+//            j--;
+//        }
+//    }
     public static void ordenarGeral(String opcao) {
         switch (opcao) {
             case "l" -> ordenarLivros();
@@ -269,13 +269,13 @@ public class Main {
             }
         }
     }
-    public static void excluirGeral(String opcao) {
-        switch (opcao) {
-            case "l" -> excluirLivro();
-            case "r" -> ordenarRevistas();
-            default -> System.out.println("Opção inválida");
-        }
-    }
+//    public static void excluirGeral(String opcao) {
+//        switch (opcao) {
+//            case "l" -> excluirLivro();
+//            case "r" -> ordenarRevistas();
+//            default -> System.out.println("Opção inválida");
+//        }
+//    }
     public static void excluirLivro() {
         listarTodosOsLivros(livros);
         int posicao=0,k=0;
@@ -293,7 +293,7 @@ public class Main {
             livros[k+1]=null;
         }
     }
-    public static void excluirRevistas() {
+    public static void excluirRevista() {
         listarTodasAsRevistas(revistas);
         int posicao=0,k=0;
         System.out.print("Digite a posição do elemento a ser excluido: ");
