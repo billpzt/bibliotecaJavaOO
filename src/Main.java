@@ -25,7 +25,7 @@ public class Main {
         System.out.println("2 - Procurar");
         System.out.println("3 - Listar todos os livros / revistas");
         System.out.println("4 - Quantidade cadastrada / livre");
-        System.out.println("5 - Excluir último elemento da lista");
+        System.out.println("5 - Excluir elemento da lista");
         System.out.println("6 - Ordenar Livros Cadastrados");
         System.out.println("0 - Encerrar programa");
     }
@@ -38,6 +38,7 @@ public class Main {
             case "5" -> excluirGeral(escolherOpcao());
             case "6" -> ordenarGeral(escolherOpcao());
             case "0" -> System.out.println("Obrigado por utilizar o programa Biblioteca!");
+            default -> System.out.println("Opção inválida, tente novamente!");
         }
     }
     public static String escolherOpcao() {
@@ -114,46 +115,34 @@ public class Main {
     public static void procurarLivro() {
         String termoBusca;
         String nomeLivro;
-        ArrayList<Livro> livrosAchados = new ArrayList<>();
 
         System.out.println("Digite o termo procurado: ");
         termoBusca = input.next();
         termoBusca = termoBusca.toLowerCase();
 
+        System.out.println("Livros encontrados: ");
         for (int index = 0; index < i; index++) {
             nomeLivro = livros[index].getNomeLivro();
-            System.out.println(index);
             if (nomeLivro.toLowerCase().contains(termoBusca)) {
-                livrosAchados.add(livros[index]);
-                System.out.println(livros[index].getNomeLivro());
+                System.out.println(index + " " + livros[index].getNomeLivro());
             }
-        }
-        System.out.println("Livros encontrados: ");
-        for (Livro livro : livrosAchados) {
-            System.out.println(livro.toString());
         }
     }
     // Função 2 do menu
     public static void procurarRevista() {
         String termoBusca;
         String nomeRevista;
-        ArrayList<Revista> revistasAchadas = new ArrayList<>();
 
         System.out.println("Digite o termo procurado: ");
         termoBusca = input.next();
         termoBusca = termoBusca.toLowerCase();
 
+        System.out.println("Revistas encontradas: ");
         for (int index = 0; index < i; index++) {
             nomeRevista = livros[index].getNomeLivro();
-            System.out.println(index);
             if (nomeRevista.toLowerCase().contains(termoBusca)) {
-                revistasAchadas.add(revistas[index]);
-                System.out.println(revistas[index].getNomeLivro());
+                System.out.println(index + " " + revistas[index].getNomeLivro());
             }
-        }
-        System.out.println("Revistas encontrados: ");
-        for (Livro livro : revistasAchadas) {
-            System.out.println(livro.toString());
         }
     }
     public static void listarGeral(String opcao) {
@@ -205,23 +194,6 @@ public class Main {
         System.out.println("Memória livre: " + (1000 - j));
 
     }
-    public static void excluirGeral(String opcao) {
-        switch (opcao) {
-            case "l" -> excluirLivro();
-            case "r" -> excluirRevista();
-            default -> System.out.println("Opção inválida");
-        }
-    }
-//    public static void excluirUltimoLivro() {
-//        if (i > 0) {
-//            i--;
-//        }
-//    }
-//    public static void excluirUltimaRevista() {
-//        if (i > 0) {
-//            j--;
-//        }
-//    }
     public static void ordenarGeral(String opcao) {
         switch (opcao) {
             case "l" -> ordenarLivros();
@@ -242,18 +214,6 @@ public class Main {
                 }
             }
         }
-        // (myStr1.toLowerCase().compareTo(myStra2.toLowerCase())<0;
-//        String titulo1, titulo2;
-//        Livro livroTemp;
-//        for (int ord=0; ord<(i-1); ord++) {
-//            titulo1 = livros[ord].getNomeLivro();
-//            titulo2 = livros[ord+1].getNomeLivro();
-//            if((titulo1.toLowerCase().compareTo(titulo2.toLowerCase())) < 0) {
-//                livroTemp = livros[ord];
-//                livros[ord] = livros[ord+1];
-//                livros[ord+1] = livroTemp;
-//            }
-//        }
     }
     public static void ordenarRevistas() {
         for (int r = 0; r < (i - 1); r++) {
@@ -269,15 +229,36 @@ public class Main {
             }
         }
     }
-//    public static void excluirGeral(String opcao) {
-//        switch (opcao) {
-//            case "l" -> excluirLivro();
-//            case "r" -> ordenarRevistas();
-//            default -> System.out.println("Opção inválida");
-//        }
-//    }
+    public static void excluirGeral(String opcao) {
+        switch (opcao) {
+            case "l" -> excluirLivro();
+            case "r" -> excluirRevista();
+            default -> System.out.println("Opção inválida");
+        }
+    }
+    public static String escolherListarBuscar() {
+        System.out.println("Escolha a opção: ");
+        System.out.println("Para listar tudo, digite \"L\"");
+        System.out.println("Para busca por palavra-chave, digite \"B\"");
+        return input.next().toLowerCase();
+    }
+    public static void listarOuBuscarLivros(String opcao) {
+        switch (opcao) {
+            case "l" -> listarTodosOsLivros(livros);
+            case "b" -> procurarLivro();
+            default -> System.out.println("Opção inválida");
+        }
+    }
+    public static void listarOuBuscarRevistas(String opcao) {
+        switch (opcao) {
+            case "l" -> listarTodasAsRevistas(revistas);
+            case "b" -> procurarRevista();
+            default -> System.out.println("Opção inválida");
+        }
+    }
     public static void excluirLivro() {
-        listarTodosOsLivros(livros);
+        listarOuBuscarLivros(escolherListarBuscar());
+
         int posicao=0,k=0;
         System.out.print("Digite a posição do elemento a ser excluido: ");
         try {
@@ -294,7 +275,8 @@ public class Main {
         }
     }
     public static void excluirRevista() {
-        listarTodasAsRevistas(revistas);
+        listarOuBuscarRevistas(escolherListarBuscar());
+
         int posicao=0,k=0;
         System.out.print("Digite a posição do elemento a ser excluido: ");
         try {
