@@ -1,5 +1,6 @@
-import java.io.Console;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -37,7 +38,7 @@ public class Main {
             case "4" -> mostrarMemoria();
             case "5" -> excluirGeral(escolherOpcao());
             case "6" -> ordenarGeral(escolherOpcao());
-            case "0" -> System.out.println("Obrigado por utilizar o programa Biblioteca!");
+            case "0" -> salvarGeral();
             default -> System.out.println("Opção inválida, tente novamente!");
         }
     }
@@ -290,6 +291,36 @@ public class Main {
                 revistas[k] = revistas[k+1];
             }
             revistas[k+1]=null;
+        }
+    }
+    public static void salvarGeral() {
+        salvarDadosLivros();
+        salvarDadosRevistas();
+        System.out.println("Obrigado por utilizar o programa Biblioteca!");
+    }
+    public static void salvarDadosLivros() {
+        try {
+            FileWriter arquivo = new FileWriter(new File("src", "livros.txt"));
+            for (int indexSalvar=0; indexSalvar<i;indexSalvar++) {
+                arquivo.write(livros[indexSalvar].toString() + "\n");
+                //arquivo.write(livros[indexSalvar].dadosLivro() + "\n");
+            }
+            arquivo.close();
+            System.out.println("Livros salvos com sucesso!");
+        } catch (IOException e){
+            System.out.println(e);
+        }
+
+    }public static void salvarDadosRevistas() {
+        try {
+            FileWriter arquivo = new FileWriter(new File("src", "revistas.txt"));
+            for (int indexSalvar=0; indexSalvar<j;indexSalvar++) {
+                arquivo.write(revistas[indexSalvar].toString() + "\n");
+            }
+            arquivo.close();
+            System.out.println("Revistas salvas com sucesso!");
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 }

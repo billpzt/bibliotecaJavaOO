@@ -108,4 +108,8 @@ public class Livro {
                 ", anoPubli=" + anoPubli +
                 '}';
     }
+    public String[] dadosLivro() {
+        String[] dadosDoLivro = new String[Integer.parseInt(String.valueOf(nomeLivro + autor + editora + isbn + prateleira + secao + cdd + edicao + anoPubli))];
+        return dadosDoLivro;
+    }
 }
