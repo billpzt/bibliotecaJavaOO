@@ -1,6 +1,6 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -12,6 +12,7 @@ public class Main {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+        recuperarDadosLivros(livros);
         do {
             menu();
             retorno = input.next();
@@ -302,8 +303,8 @@ public class Main {
         try {
             FileWriter arquivo = new FileWriter(new File("src", "livros.txt"));
             for (int indexSalvar=0; indexSalvar<i;indexSalvar++) {
-                arquivo.write(livros[indexSalvar].toString() + "\n");
-                //arquivo.write(livros[indexSalvar].dadosLivro() + "\n");
+                //arquivo.write(livros[indexSalvar].toString() + "\n");
+                arquivo.write(livros[indexSalvar].dadosLivro() + "\n");
             }
             arquivo.close();
             System.out.println("Livros salvos com sucesso!");
@@ -311,16 +312,57 @@ public class Main {
             System.out.println(e);
         }
 
-    }public static void salvarDadosRevistas() {
+    }
+    public static void salvarDadosRevistas() {
         try {
             FileWriter arquivo = new FileWriter(new File("src", "revistas.txt"));
             for (int indexSalvar=0; indexSalvar<j;indexSalvar++) {
-                arquivo.write(revistas[indexSalvar].toString() + "\n");
+                arquivo.write(revistas[indexSalvar].dadosRevista() + "\n");
             }
             arquivo.close();
             System.out.println("Revistas salvas com sucesso!");
         } catch (IOException e) {
             System.out.println(e);
+        }
+    }
+    public static void recuperarDadosLivros(Livro[] livros) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\william.piazzetta\\IdeaProjects\\Bilbioteca\\src\\livros.txt")));
+            String linha = reader.readLine();
+
+            while (linha != null && i < livros.length) {
+                String[] dados = linha.split(", ");
+
+                if (dados.length == 9) {
+                    String nomeLivro = dados[0];
+                    String autor = dados[1];
+                    String editora = dados[2];
+                    String isbn = dados[3];
+                    String prateleira = dados[4];
+                    String secao = dados[5];
+                    String cdd = dados[6];
+                    int edicao = Integer.parseInt(dados[7]);
+                    int anoPubli = Integer.parseInt(dados[8]);
+
+                    Livro livro = new Livro(
+                            nomeLivro,
+                            autor,
+                            editora,
+                            isbn,
+                            prateleira,
+                            secao,
+                            cdd,
+                            edicao,
+                            anoPubli);
+                    livros[i] = livro;
+                } else {
+                    System.out.println("Formato de linha inválido: " + linha);
+                }
+                linha = reader.readLine();
+            }
+            reader.close();
+        } catch ( IOException e) {
+            e.printStackTrace();
         }
     }
 }

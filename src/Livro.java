@@ -5,11 +5,6 @@ public class Livro {
     public Livro() {
     }
 
-//    @Override
-//    public String toString() {
-//        return nomeLivro + autor;
-//    }
-
     public Livro(String nomeLivro, String autor, String editora, String isbn, String prateleira, String secao, String cdd, int edicao, int anoPubli) {
         this.nomeLivro = nomeLivro;
         this.autor = autor;
@@ -108,8 +103,8 @@ public class Livro {
                 ", anoPubli=" + anoPubli +
                 '}';
     }
-    public String[] dadosLivro() {
-        String[] dadosDoLivro = new String[Integer.parseInt(String.valueOf(nomeLivro + autor + editora + isbn + prateleira + secao + cdd + edicao + anoPubli))];
+    public String dadosLivro() {
+        String dadosDoLivro = nomeLivro + ", " + autor + ", " + editora + ", " + isbn + ", " + prateleira + ", " + secao + ", " + cdd + ", " + edicao + ", " + anoPubli;
         return dadosDoLivro;
     }
 }

@@ -16,4 +16,9 @@ public class Revista extends Livro {
     }
 
     private String issn;
+
+    public String dadosRevista() {
+        String dadosDaRevista = nomeLivro + ", " + autor + ", " + editora + ", " + issn + ", " + prateleira + ", " + secao + ", " + cdd + ", " + edicao + ", " + anoPubli;
+        return dadosDaRevista;
+    }
 }
