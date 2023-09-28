@@ -355,6 +355,7 @@ public class Main {
                             edicao,
                             anoPubli);
                     livros[i] = livro;
+                    System.out.println(livros[i]);
                 } else {
                     System.out.println("Formato de linha inválido: " + linha);
                 }
