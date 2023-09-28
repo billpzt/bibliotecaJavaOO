@@ -4,11 +4,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static int i = 0;
-    static int j = 0;
+    static int i = 0; // livros
+    static int j = 0; // revistas
+    static int k = 0; // artigos
+    static int l = 0; // CDs
+    static int m = 0; // DVDs
     static String retorno;
     static Livro[] livros = new Livro[1000];
     static Revista[] revistas = new Revista[1000];
+    static Artigo[] artigos = new Artigo[1000];
+    static CD[] cds = new CD[1000];
+    static DVD[] dvds = new DVD[1000];
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -21,11 +27,11 @@ public class Main {
     }
     public static void menu() {
         System.out.println("*********************************");
-        System.out.println("**Sistema de Cadastro de Livros**");
+        System.out.println("**Sistema de Cadastro**");
         System.out.println("*********************************");
         System.out.println("1 - Cadastrar");
         System.out.println("2 - Procurar");
-        System.out.println("3 - Listar todos os livros / revistas");
+        System.out.println("3 - Listar todos os livros / revistas / artigos / CDs / DVDs");
         System.out.println("4 - Quantidade cadastrada / livre");
         System.out.println("5 - Excluir elemento da lista");
         System.out.println("6 - Ordenar Livros Cadastrados");
@@ -47,6 +53,9 @@ public class Main {
         System.out.println("Escolha a opção: ");
         System.out.println("Para livros, digite \"L\"");
         System.out.println("Para revistas, digite \"R\"");
+        System.out.println("Para artigos, digite \"A\"");
+        System.out.println("Para CDs, digite \"C\"");
+        System.out.println("Para DVDs, digite \"D\"");
         return input.next().toLowerCase();
     }
     // opção 1 do menu
@@ -54,9 +63,13 @@ public class Main {
         switch (opcao) {
             case "l" -> cadastrarLivro();
             case "r" -> cadastrarRevista();
+            case "a" -> cadastrarArtigo();
+            case "c" -> cadastrarCD();
+            case "d" -> cadastrarDVD();
             default -> System.out.println("Opção inválida");
         }
     }
+
     // opção 1 do menu
     public static void cadastrarLivro() {
         livros[i] = new Livro();
@@ -105,14 +118,71 @@ public class Main {
         revistas[j].setAnoPubli(Integer.parseInt(input.nextLine()));
         j++;
     }
+    private static void cadastrarArtigo() {
+        artigos[k] = new Artigo();
+        input.nextLine(); // Consume the leftover newline from previous input
+        System.out.print("Digite o DOI: ");
+        artigos[k].setDoi(input.nextLine());
+        System.out.print("Digite a chave: ");
+        artigos[k].setChave(input.nextLine());
+        System.out.print("Digite o tema: ");
+        artigos[k].setTema(input.nextLine());
+        System.out.print("Digite o autor: ");
+        artigos[k].setAutor(input.nextLine());
+        System.out.print("Digite o ano: ");
+        artigos[k].setAno(input.nextLine());
+        System.out.print("Digite o instituto: ");
+        artigos[k].setInstituto(input.nextLine());
+        k++;
+    }
+    private static void cadastrarCD() {
+        cds[l] = new CD();
+        input.nextLine(); // Consume the leftover newline from previous input
+        System.out.print("Digite o artista: ");
+        cds[l].setArtista(input.nextLine());
+        System.out.print("Digite a gravadora: ");
+        cds[l].setGravadora(input.nextLine());
+        System.out.print("Digite o album: ");
+        cds[l].setAlbum(input.nextLine());
+        System.out.print("Digite o ano: ");
+        cds[l].setAno(input.nextLine());
+        System.out.print("Digite o UPC: ");
+        cds[l].setUpc(input.nextLine());
+        l++;
+    }
+    private static void cadastrarDVD() {
+        dvds[m] = new DVD();
+        input.nextLine(); // Consume the leftover newline from previous input
+        System.out.print("Digite o nome: ");
+        dvds[m].setNome(input.nextLine());
+        System.out.print("Digite a distribuidora: ");
+        dvds[m].setDistribuidora(input.nextLine());
+        System.out.print("Digite o duração: ");
+        dvds[m].setDuracao(input.nextLine());
+        System.out.print("Digite o sinopse: ");
+        dvds[m].setSinopse(input.nextLine());
+        System.out.print("Digite o bonus: ");
+        dvds[m].setBonus(input.nextLine());
+        System.out.print("Digite o ano: ");
+        dvds[m].setAno(input.nextLine());
+        System.out.print("Digite o gênero: ");
+        dvds[m].setGenero(input.nextLine());
+        System.out.print("Digite o UPC: ");
+        dvds[m].setUpc(input.nextLine());
+        m++;
+    }
     // Função 2 do menu
     public static void procurarGeral(String opcao) {
         switch (opcao) {
             case "l" -> procurarLivro();
             case "r" -> procurarRevista();
+            case "a" -> procurarArtigo();
+            case "c" -> procurarCD();
+            case "d" -> procurarDVD();
             default -> System.out.println("Opção inválida");
         }
     }
+
     // Função 2 do menu
     public static void procurarLivro() {
         String termoBusca;
@@ -146,6 +216,30 @@ public class Main {
                 System.out.println(index + " " + revistas[index].getNomeLivro());
             }
         }
+    }
+    private static void procurarArtigo() {
+        String termoBusca;
+        String chave;
+
+        System.out.println("Digite o termo procurado: ");
+        termoBusca = input.next();
+        termoBusca = termoBusca.toLowerCase();
+
+        System.out.println("Artigos encontrados: ");
+        for (int index = 0; index < i; index++) {
+            chave = artigos[index].getChave();
+            if (chave.toLowerCase().contains(termoBusca)) {
+                System.out.println(index + " " + artigos[index].getChave());
+            }
+        }
+    }
+
+    private static void procurarCD() {
+
+    }
+
+    private static void procurarDVD() {
+
     }
     public static void listarGeral(String opcao) {
         switch (opcao) {
