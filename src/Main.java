@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -39,12 +37,12 @@ public class Main {
     }
     public static void escolhaMenu(String retorno) {
         switch (retorno) {
-            case "1" -> cadastroGeral(escolherOpcao());
-            case "2" -> procurarGeral(escolherOpcao());
-            case "3" -> listarGeral(escolherOpcao());
+            case "1" -> Cadastrar.cadastroGeral(escolherOpcao());
+            case "2" -> Procurar.procurarGeral(escolherOpcao());
+            case "3" -> Listar.listarGeral(escolherOpcao());
             case "4" -> mostrarMemoria();
-            case "5" -> excluirGeral(escolherOpcao());
-            case "6" -> ordenarGeral(escolherOpcao());
+            case "5" -> Excluir.excluirGeral(escolherOpcao());
+            case "6" -> Ordenar.ordenarGeral(escolherOpcao());
             case "0" -> salvarGeral();
             default -> System.out.println("Opção inválida, tente novamente!");
         }
@@ -58,227 +56,6 @@ public class Main {
         System.out.println("Para DVDs, digite \"D\"");
         return input.next().toLowerCase();
     }
-    // opção 1 do menu
-    public static void cadastroGeral(String opcao) {
-        switch (opcao) {
-            case "l" -> cadastrarLivro();
-            case "r" -> cadastrarRevista();
-            case "a" -> cadastrarArtigo();
-            case "c" -> cadastrarCD();
-            case "d" -> cadastrarDVD();
-            default -> System.out.println("Opção inválida");
-        }
-    }
-
-    // opção 1 do menu
-    public static void cadastrarLivro() {
-        livros[i] = new Livro();
-        input.nextLine(); // Consume the leftover newline from previous input
-        System.out.print("Digite o nome do livro: ");
-        livros[i].setNomeLivro(input.nextLine());
-        System.out.print("Digite o autor: ");
-        livros[i].setAutor(input.nextLine());
-        System.out.print("Digite a editora: ");
-        livros[i].setEditora(input.nextLine());
-        System.out.print("Digite o ISBN: ");
-        livros[i].setIsbn(input.nextLine());
-        System.out.print("Digite a prateleira: ");
-        livros[i].setPrateleira(input.nextLine());
-        System.out.print("Digite a seção: ");
-        livros[i].setSecao(input.nextLine());
-        System.out.print("Digite o CDD: ");
-        livros[i].setCdd(input.nextLine());
-        System.out.print("Digite a edição: ");
-        livros[i].setEdicao(Integer.parseInt(input.nextLine()));
-        System.out.print("Digite o ano de publicação: ");
-        livros[i].setAnoPubli(Integer.parseInt(input.nextLine()));
-        i++;
-    }
-    // opção 1 do menu
-    public static void cadastrarRevista() {
-        revistas[j] = new Revista();
-        input.nextLine(); // Consume the leftover newline from previous input
-        System.out.print("Digite o nome do livro: ");
-        revistas[j].setNomeLivro(input.nextLine());
-        System.out.print("Digite o autor: ");
-        revistas[j].setAutor(input.nextLine());
-        System.out.print("Digite a editora: ");
-        revistas[j].setEditora(input.nextLine());
-        System.out.print("Digite o ISSN: ");
-        revistas[j].setIssn(input.nextLine());
-        System.out.print("Digite a prateleira: ");
-        revistas[j].setPrateleira(input.nextLine());
-        System.out.print("Digite a seção: ");
-        revistas[j].setSecao(input.nextLine());
-        System.out.print("Digite o CDD: ");
-        revistas[j].setCdd(input.nextLine());
-        System.out.print("Digite a edição: ");
-        revistas[j].setEdicao(Integer.parseInt(input.nextLine()));
-        System.out.print("Digite o ano de publicação: ");
-        revistas[j].setAnoPubli(Integer.parseInt(input.nextLine()));
-        j++;
-    }
-    private static void cadastrarArtigo() {
-        artigos[k] = new Artigo();
-        input.nextLine(); // Consume the leftover newline from previous input
-        System.out.print("Digite o DOI: ");
-        artigos[k].setDoi(input.nextLine());
-        System.out.print("Digite a chave: ");
-        artigos[k].setChave(input.nextLine());
-        System.out.print("Digite o tema: ");
-        artigos[k].setTema(input.nextLine());
-        System.out.print("Digite o autor: ");
-        artigos[k].setAutor(input.nextLine());
-        System.out.print("Digite o ano: ");
-        artigos[k].setAno(input.nextLine());
-        System.out.print("Digite o instituto: ");
-        artigos[k].setInstituto(input.nextLine());
-        k++;
-    }
-    private static void cadastrarCD() {
-        cds[l] = new CD();
-        input.nextLine(); // Consume the leftover newline from previous input
-        System.out.print("Digite o artista: ");
-        cds[l].setArtista(input.nextLine());
-        System.out.print("Digite a gravadora: ");
-        cds[l].setGravadora(input.nextLine());
-        System.out.print("Digite o album: ");
-        cds[l].setAlbum(input.nextLine());
-        System.out.print("Digite o ano: ");
-        cds[l].setAno(input.nextLine());
-        System.out.print("Digite o UPC: ");
-        cds[l].setUpc(input.nextLine());
-        l++;
-    }
-    private static void cadastrarDVD() {
-        dvds[m] = new DVD();
-        input.nextLine(); // Consume the leftover newline from previous input
-        System.out.print("Digite o nome: ");
-        dvds[m].setNome(input.nextLine());
-        System.out.print("Digite a distribuidora: ");
-        dvds[m].setDistribuidora(input.nextLine());
-        System.out.print("Digite o duração: ");
-        dvds[m].setDuracao(input.nextLine());
-        System.out.print("Digite o sinopse: ");
-        dvds[m].setSinopse(input.nextLine());
-        System.out.print("Digite o bonus: ");
-        dvds[m].setBonus(input.nextLine());
-        System.out.print("Digite o ano: ");
-        dvds[m].setAno(input.nextLine());
-        System.out.print("Digite o gênero: ");
-        dvds[m].setGenero(input.nextLine());
-        System.out.print("Digite o UPC: ");
-        dvds[m].setUpc(input.nextLine());
-        m++;
-    }
-    // Função 2 do menu
-    public static void procurarGeral(String opcao) {
-        switch (opcao) {
-            case "l" -> procurarLivro();
-            case "r" -> procurarRevista();
-            case "a" -> procurarArtigo();
-            case "c" -> procurarCD();
-            case "d" -> procurarDVD();
-            default -> System.out.println("Opção inválida");
-        }
-    }
-
-    // Função 2 do menu
-    public static void procurarLivro() {
-        String termoBusca;
-        String nomeLivro;
-
-        System.out.println("Digite o termo procurado: ");
-        termoBusca = input.next();
-        termoBusca = termoBusca.toLowerCase();
-
-        System.out.println("Livros encontrados: ");
-        for (int index = 0; index < i; index++) {
-            nomeLivro = livros[index].getNomeLivro();
-            if (nomeLivro.toLowerCase().contains(termoBusca)) {
-                System.out.println(index + " " + livros[index].getNomeLivro());
-            }
-        }
-    }
-    // Função 2 do menu
-    public static void procurarRevista() {
-        String termoBusca;
-        String nomeRevista;
-
-        System.out.println("Digite o termo procurado: ");
-        termoBusca = input.next();
-        termoBusca = termoBusca.toLowerCase();
-
-        System.out.println("Revistas encontradas: ");
-        for (int index = 0; index < i; index++) {
-            nomeRevista = livros[index].getNomeLivro();
-            if (nomeRevista.toLowerCase().contains(termoBusca)) {
-                System.out.println(index + " " + revistas[index].getNomeLivro());
-            }
-        }
-    }
-    private static void procurarArtigo() {
-        String termoBusca;
-        String chave;
-
-        System.out.println("Digite o termo procurado: ");
-        termoBusca = input.next();
-        termoBusca = termoBusca.toLowerCase();
-
-        System.out.println("Artigos encontrados: ");
-        for (int index = 0; index < i; index++) {
-            chave = artigos[index].getChave();
-            if (chave.toLowerCase().contains(termoBusca)) {
-                System.out.println(index + " " + artigos[index].getChave());
-            }
-        }
-    }
-
-    private static void procurarCD() {
-
-    }
-
-    private static void procurarDVD() {
-
-    }
-    public static void listarGeral(String opcao) {
-        switch (opcao) {
-            case "l" -> listarTodosOsLivros(livros);
-            case "r" -> listarTodasAsRevistas(revistas);
-            default -> System.out.println("Opção inválida");
-        }
-    }
-    // opção 4 do menu
-    public static void listarTodosOsLivros(Livro[] livros) {
-        for (int index = 0; index < i; index++) {
-            System.out.println("Livro" + index);
-            System.out.println(
-                    livros[index].getNomeLivro() + ", " +
-                            livros[index].getAutor() + ", " +
-                            livros[index].getIsbn() + ", " +
-                            livros[index].getCdd() + ", " +
-                            livros[index].getEditora() + ", " +
-                            livros[index].getEdicao() + ", " +
-                            livros[index].getPrateleira() + ", " +
-                            livros[index].getAnoPubli()
-            );
-        }
-    }
-    public static void listarTodasAsRevistas(Revista[] revistas) {
-        for (int index = 0; index < j; index++) {
-            System.out.println("Livro" + index);
-            System.out.println(
-                    revistas[index].getNomeLivro() + ", " +
-                            revistas[index].getAutor() + ", " +
-                            revistas[index].getIssn() + ", " +
-                            revistas[index].getCdd() + ", " +
-                            revistas[index].getEditora() + ", " +
-                            revistas[index].getEdicao() + ", " +
-                            revistas[index].getPrateleira() + ", " +
-                            revistas[index].getAnoPubli()
-            );
-        }
-    }
     public static void mostrarMemoria() {
         System.out.println("Total: 1000");
         System.out.println("Livros:");
@@ -288,106 +65,21 @@ public class Main {
         System.out.println("Revistas:");
         System.out.println("Memória usada: " + j);
         System.out.println("Memória livre: " + (1000 - j));
+        System.out.println();
+        System.out.println("Artigos:");
+        System.out.println("Memória usada: " + k);
+        System.out.println("Memória livre: " + (1000 - k));
+        System.out.println();
+        System.out.println("CDs:");
+        System.out.println("Memória usada: " + l);
+        System.out.println("Memória livre: " + (1000 - l));
+        System.out.println();
+        System.out.println("DVDs:");
+        System.out.println("Memória usada: " + m);
+        System.out.println("Memória livre: " + (1000 - m));
 
     }
-    public static void ordenarGeral(String opcao) {
-        switch (opcao) {
-            case "l" -> ordenarLivros();
-            case "r" -> ordenarRevistas();
-            default -> System.out.println("Opção inválida");
-        }
-    }
-    public static void ordenarLivros() {
-        for (int k = 0; k < (i - 1); k++) {
-            for (int z = 0; z < (i - 1); z++) {
-                Livro aux = new Livro();
-                Livro aux1 = new Livro();
-                aux = livros[z];
-                aux1 = livros[z + 1];
-                if (aux.getNomeLivro().compareToIgnoreCase(aux1.getNomeLivro()) > 0) {
-                    livros[z] = aux1;
-                    livros[z + 1] = aux;
-                }
-            }
-        }
-    }
-    public static void ordenarRevistas() {
-        for (int r = 0; r < (i - 1); r++) {
-            for (int z = 0; z < (i - 1); z++) {
-                Revista aux = new Revista();
-                Revista aux1 = new Revista();
-                aux = revistas[z];
-                aux1 = revistas[z + 1];
-                if (aux.getNomeLivro().compareToIgnoreCase(aux1.getNomeLivro()) > 0) {
-                    livros[z] = aux1;
-                    livros[z + 1] = aux;
-                }
-            }
-        }
-    }
-    public static void excluirGeral(String opcao) {
-        switch (opcao) {
-            case "l" -> excluirLivro();
-            case "r" -> excluirRevista();
-            default -> System.out.println("Opção inválida");
-        }
-    }
-    public static String escolherListarBuscar() {
-        System.out.println("Escolha a opção: ");
-        System.out.println("Para listar tudo, digite \"L\"");
-        System.out.println("Para busca por palavra-chave, digite \"B\"");
-        return input.next().toLowerCase();
-    }
-    public static void listarOuBuscarLivros(String opcao) {
-        switch (opcao) {
-            case "l" -> listarTodosOsLivros(livros);
-            case "b" -> procurarLivro();
-            default -> System.out.println("Opção inválida");
-        }
-    }
-    public static void listarOuBuscarRevistas(String opcao) {
-        switch (opcao) {
-            case "l" -> listarTodasAsRevistas(revistas);
-            case "b" -> procurarRevista();
-            default -> System.out.println("Opção inválida");
-        }
-    }
-    public static void excluirLivro() {
-        listarOuBuscarLivros(escolherListarBuscar());
 
-        int posicao=0,k=0;
-        System.out.print("Digite a posição do elemento a ser excluido: ");
-        try {
-            posicao = input.nextInt();
-        } catch (Exception e) {
-            System.out.println("Entrada incorreta");
-        }
-        if((posicao <= i && posicao >= 0)) {
-            i--;
-            for (k = posicao; k<=i; k++) {
-                livros[k] = livros[k+1];
-            }
-            livros[k+1]=null;
-        }
-    }
-    public static void excluirRevista() {
-        listarOuBuscarRevistas(escolherListarBuscar());
-
-        int posicao=0,k=0;
-        System.out.print("Digite a posição do elemento a ser excluido: ");
-        try {
-            posicao = input.nextInt();
-        } catch (Exception e) {
-            System.out.println("Entrada incorreta");
-        }
-        if((posicao <= i && posicao >= 0)) {
-            i--;
-            for (k = posicao; k<=i; k++) {
-                revistas[k] = revistas[k+1];
-            }
-            revistas[k+1]=null;
-        }
-    }
     public static void salvarGeral() {
         salvarDadosLivros();
         salvarDadosRevistas();

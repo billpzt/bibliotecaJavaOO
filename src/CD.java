@@ -21,7 +21,7 @@ public class CD {
                 ", upc='" + upc + '\'' +
                 '}';
     }
-    public String dadosArtigo() {
+    public String dadosCD() {
         String dadosDoCD = artista + ", " + gravadora + ", " + album + ", " + ano + ", " + upc;
         return dadosDoCD;
     }
